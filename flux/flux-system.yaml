@@ -20,6 +20,6 @@ spec:
   prune: true
   sourceRef:
     kind: GitRepository
-    name: my-k8s-configs
+    name: talos-k8s-configs
   validation: client
 
