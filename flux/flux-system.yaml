@@ -1,0 +1,25 @@
+apiVersion: fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: my-k8s-configs
+  namespace: flux-system
+spec:
+  interval: 1m0s
+  url: https://github.com/kareimhasan/talos-k8s-configs.git
+  ref:
+    branch: main
+---
+apiVersion: fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: nginx-app
+  namespace: flux-system
+spec:
+  interval: 10m0s
+  path: "./flux"
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: my-k8s-configs
+  validation: client
+
